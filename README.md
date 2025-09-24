@@ -1,1 +1,0 @@
-# Farhan-Online-Lab-Manual

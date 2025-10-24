@@ -1,0 +1,82 @@
+h1 { color: navy; text-decoration: underline; font-family: Arial, sans-serif; }
+h2 { color: darkslategray; font-size: 1.2rem; }
+p { color: #333; line-height: 1.4; }
+
+.highlight {
+  background-color: #fff3a7;
+  font-style: italic;
+  padding: 4px;
+}
+
+#main-title {
+  color: #0b3d91;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h2, p, li {
+  border: 1px dashed #cfcfcf;
+  padding: 6px;
+  margin: 8px 0;
+}
+
+div p {
+  color: #1a5f7a;
+  background: #eef9fb;
+  margin-left: 0;
+}
+
+div > ul > li {
+  list-style-type: square;
+  padding-left: 8px;
+  margin: 4px 0;
+}
+
+input[type="text"] {
+  border: 2px solid #6aa84f;
+  padding: 6px;
+}
+input[type="password"] {
+  border: 2px solid #e06666;
+  padding: 6px;
+}
+input[type="search"] {
+  border: 2px solid #3c78d8;
+  padding: 6px;
+}
+
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+.pseudo-list li:first-child {
+  font-weight: bold;
+}
+.pseudo-list li:last-child {
+  font-style: italic;
+}
+
+.with-before-after::before {
+  content: "★ ";
+  font-size: 1.1rem;
+}
+.with-before-after::after {
+  content: " ✨";
+  font-size: 1.1rem;
+}
+.firstletter::first-letter {
+  font-size: 2rem;
+  color: green;
+  float: left;
+  margin-right: 6px;
+}
+
+.sample-img {
+  border: 2px solid black;
+  width: 240px;
+  display: block;
+  margin: 8px 0;
+}
+
+body { font-family: Georgia, 'Times New Roman', serif; padding: 16px; max-width: 900px; margin: auto; }
+nav a { color: #0652DD; }

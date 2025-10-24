@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Experiment 5: CSS Selectors</title>
+  <link rel="stylesheet" href="lab5.css">
+</head>
+<body>
+  <header>
+    <h1 id="main-title">Experiment 5: CSS Selectors</h1>
+    <p class="description">A simple page to demonstrate different CSS selectors.</p>
+  </header>
+
+  <section>
+    <h2>Element selector example</h2>
+    <p>This paragraph uses element selectors (p) for basic styling.</p>
+
+    <h2 class="styled-h2">Class selector example</h2>
+    <p class="highlight">This paragraph is styled with the <code>.highlight</code> class.</p>
+
+    <div class="box">
+      <p>Paragraph inside a <code>div</code> (descendant selector applies).</p>
+      <ul>
+        <li>Direct list item 1</li>
+        <li>Direct list item 2</li>
+        <li>Direct list item 3</li>
+      </ul>
+    </div>
+
+    <div class="outer">
+      <h2>Child selector example</h2>
+      <ul>
+        <li>Child list A</li>
+        <li>Child list B</li>
+      </ul>
+      <div>
+        <ul>
+          <li>Nested list (not direct child of .outer > ul)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Attribute selector &amp; inputs</h2>
+    <form>
+      <label>Username: <input type="text" name="user" placeholder="text input"></label><br>
+      <label>Password: <input type="password" name="pass" placeholder="password"></label><br>
+      <label>Search: <input type="search" name="q" placeholder="search input"></label><br>
+      <input type="submit" value="Submit">
+    </form>
+
+    <h2>Pseudo-classes &amp; pseudo-elements</h2>
+    <ul class="pseudo-list">
+      <li>First item (bold via :first-child)</li>
+      <li>Middle item</li>
+      <li>Last item (italic via :last-child)</li>
+    </ul>
+
+    <h2 class="with-before-after">Heading with ::before and ::after</h2>
+
+    <p class="firstletter">This paragraph demonstrates the <code>::first-letter</code> pseudo-element. Notice the larger first letter.</p>
+
+    <h2>Image example</h2>
+    <img src="Screenshot 3.png" alt=""><br>
+    <a href="Lab 1.html">View Lab 1 </a> <br><hr>
+    <a href="Lab 2.html">View Lab 2 </a><br><hr>
+    <a href="Lab 3.html">View Lab 3 </a> <br><hr>
+    <a href="Lab 4.html">View Lab 4 </a><br><hr>
+
+</body>
+</html>

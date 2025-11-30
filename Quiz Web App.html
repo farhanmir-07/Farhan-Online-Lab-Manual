@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of Pakistan Quiz</title>
+    <style>
+        /* Base layout and flexbox centering */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        /* Screen containers: welcome, quiz, result */
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Only show the welcome screen initially */
+        #welcome-screen {
+            display: flex;
+        }
+        /* Title and start button */
+        h1 {
+            margin-bottom: 20px;
+        }
+        #start-btn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #start-btn:hover {
+            background-color: #45a049;
+        }
+        /* Quiz question text */
+        #question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        /* Options list: flex column for vertical list */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .option {
+            padding: 10px;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            width: 100%;
+            font-size: 1em;
+        }
+        .option:hover {
+            background-color: #4caf50;
+            color: #fff;
+        }
+        /* Feedback text (Correct/Wrong) */
+        #feedback {
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        /* Result screen text */
+        #final-score {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        #final-message {
+            font-size: 1.2em;
+        }
+        /* Responsive adjustments for small screens */
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            #question { font-size: 1em; }
+            .option { font-size: 0.9em; }
+            #final-score { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="container">
+        <h1>History of Pakistan Quiz</h1>
+        <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="container">
+        <div id="question"></div>
+        <div id="options" class="options"></div>
+        <div id="feedback"></div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="container">
+        <div id="final-score"></div>
+        <div id="final-message"></div>
+    </div>
+
+    <script>
+        // All quiz questions stored in an array of objects:contentReference[oaicite:11]{index=11}.
+        const questions = [
+            {
+                question: "In which year did Pakistan gain independence?",
+                options: ["1945", "1946", "1947", "1950"],
+                answer: 2
+            },
+            {
+                question: "Who is known as the 'Father of the Nation' of Pakistan?",
+                options: ["Liaquat Ali Khan", "Allama Iqbal", "Zulfikar Ali Bhutto", "Muhammad Ali Jinnah"],
+                answer: 3
+            },
+            {
+                question: "What was the first capital of Pakistan after independence?",
+                options: ["Lahore", "Karachi", "Islamabad", "Rawalpindi"],
+                answer: 1
+            },
+            {
+                question: "In which year was the Lahore Resolution (Pakistan Resolution) passed?",
+                options: ["1930", "1940", "1950", "1960"],
+                answer: 1
+            },
+            {
+                question: "Which war resulted in the independence of Bangladesh (formerly East Pakistan)?",
+                options: ["Indo-Pak War 1965", "Indo-Pak War 1971", "Kargil War 1999", "World War II"],
+                answer: 1
+            },
+            {
+                question: "Who wrote the lyrics of Pakistan's national anthem?",
+                options: ["Allama Iqbal", "Hafeez Jalandhari", "Faiz Ahmed Faiz", "Salman Rushdie"],
+                answer: 1
+            },
+            {
+                question: "Pakistan became an Islamic Republic by adopting its first constitution on 23 March 1956. (True/False)",
+                options: ["True", "False"],
+                answer: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Reference HTML elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const feedbackEl = document.getElementById('feedback');
+        const finalScoreEl = document.getElementById('final-score');
+        const finalMessageEl = document.getElementById('final-message');
+        const startBtn = document.getElementById('start-btn');
+
+        // Start the quiz: hide welcome, show first question
+        startBtn.addEventListener('click', () => {
+            welcomeScreen.style.display = 'none';
+            quizScreen.style.display = 'flex';
+            currentQuestion = 0;
+            score = 0;
+            showQuestion();
+        });
+
+        // Display the current question and its options
+        function showQuestion() {
+            feedbackEl.textContent = '';  // clear feedback
+            if (currentQuestion >= questions.length) {
+                showResult();
+                return;
+            }
+            const q = questions[currentQuestion];
+            questionEl.textContent = q.question;
+            optionsEl.innerHTML = '';
+            q.options.forEach((opt, index) => {
+                const button = document.createElement('button');
+                button.textContent = opt;
+                button.className = 'option';
+                button.addEventListener('click', () => selectOption(index, button));
+                optionsEl.appendChild(button);
+            });
+        }
+
+        // Handle answer selection and give immediate feedback
+        function selectOption(index, button) {
+            const optionButtons = optionsEl.querySelectorAll('.option');
+            optionButtons.forEach(btn => btn.disabled = true);
+            const correctIndex = questions[currentQuestion].answer;
+            if (index === correctIndex) {
+                score++;
+                feedbackEl.textContent = 'Correct!';
+                feedbackEl.style.color = 'green';
+                button.style.backgroundColor = '#c8e6c9'; // light green
+            } else {
+                feedbackEl.textContent = 'Wrong!';
+                feedbackEl.style.color = 'red';
+                button.style.backgroundColor = '#f8d7da'; // light red
+                // Highlight the correct answer as well
+                optionButtons[correctIndex].style.backgroundColor = '#c8e6c9';
+            }
+            // Move to the next question after a short delay
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion();
+            }, 1000);
+        }
+
+        // Show final results screen with score and message
+        function showResult() {
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'flex';
+            finalScoreEl.textContent = `Your score: ${score} out of ${questions.length}`;
+            if (score === questions.length) {
+                finalMessageEl.textContent = 'Excellent! Perfect score!';
+            } else if (score >= questions.length / 2) {
+                finalMessageEl.textContent = 'Great job!';
+            } else {
+                finalMessageEl.textContent = 'Better luck next time!';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Technologies Handout - Responsive Lab</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background-color: antiquewhite;
+            transition: all 0.3s ease;
+        }
+
+        #center {
+            text-align: center;
+        }
+
+        h1 {
+            color: navy;
+            text-align: center;
+        }
+
+        h2, h3 {
+            color: darkslategray;
+            text-align: center;
+        }
+
+        ol li {
+            margin: 8px 0;
+        }
+
+        /* Desktop Container (Visible by default) */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px solid navy;
+            border-radius: 10px;
+            background-color: white;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Container (Hidden by default) */
+        .mcontainer {
+            display: none;
+            flex-direction: column;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        /* Desktop List Styling */
+        .desktop-list {
+            width: 100%;
+            padding-left: 40px;
+        }
+
+        .desktop-list li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Style for last item in desktop list (for align-self demonstration) */
+        .desktop-list li:last-child {
+            align-self: flex-end;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: darkblue;
+        }
+
+        /* Mobile List Styling */
+        .mobile-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .mobile-list li {
+            padding: 12px;
+            margin: 5px 0;
+            background-color: #e6f7ff;
+            border-radius: 5px;
+            border-left: 4px solid blue;
+        }
+
+        /* Style for last item in mobile list (for align-self demonstration) */
+        .mobile-list li:last-child {
+            align-self: center;
+            background-color: #d1ecf1;
+            color: #0c5460;
+            font-weight: bold;
+        }
+
+        /* Media Query for Mobile Devices (max-width: 480px) */
+        @media only screen and (max-width: 480px) {
+            body {
+                margin: 20px;
+                background-color: aqua;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            /* Hide desktop container */
+            .container {
+                display: none;
+            }
+            
+            /* Show mobile container */
+            .mcontainer {
+                display: flex;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Mobile-specific text styling */
+            h1, h2, h3 {
+                text-align: left;
+                padding-left: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2, h3 {
+                font-size: 1.2em;
+            }
+            
+            /* Mobile list item styling */
+            .mobile-list li {
+                color: blue;
+                text-align: left;
+            }
+            
+            /* Center the last item in mobile view */
+            .mobile-list li:last-child {
+                text-align: center;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Technologies Handout</h1>
+    <h2>Course: CSS-336 (2+1)</h2>
+    <p id="center">Semester: Fall 2025</p>
+    <h3>Name: ______ | Registration ID: ______</h3>
+    
+    <p>Following are the list of experiments:</p>
+    
+    <!-- Desktop Container (Visible on larger screens) -->
+    <div class="container">
+        <ol class="desktop-list">
+            <li>Experiment 1: Introduction to HTML Basics</li>
+            <li>Experiment 2: Creating and Publishing an Online Lab Manual</li>
+            <li>Experiment 3: Working with Tables, Lists, Images, and Hyperlinks</li>
+            <li>Experiment 4: Applying CSS to HTML (Inline, Internal, and External Styles)</li>
+            <li>Experiment 5: Exploring CSS Selectors</li>
+            <li>Experiment 6: Web Responsiveness</li>
+        </ol>
+    </div>
+    
+    <!-- Mobile Container (Visible only on small screens) -->
+    <div class="mcontainer">
+        <ol class="mobile-list">
+            <li>Lab 1</li>
+            <li>Lab 2</li>
+            <li>Lab 3</li>
+            <li>Lab 4</li>
+            <li>Lab 5</li>
+            <li>Lab 6</li>
+        </ol>
+    </div>
+</body>
+</html>

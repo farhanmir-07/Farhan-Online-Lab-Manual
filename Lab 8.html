@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Panel Lab</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .panel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        
+        .interactive-item {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Interactive Panel</h2>
+    <p>Click each element to see different actions:</p>
+    
+    <div class="panel">
+        <!-- 1. Color Changer -->
+        <div class="interactive-item" onclick="changeColor(this)" style="background:#ffcccc">
+            Click to Change Color
+        </div>
+        
+        <!-- 2. Text Modifier -->
+        <div class="interactive-item" onclick="modifyText(this)" style="background:#ccffcc">
+            Click to Modify Text
+        </div>
+        
+        <!-- 3. Visibility Toggler -->
+        <div class="interactive-item" onclick="toggleVisibility(this)" style="background:#ccccff">
+            Click to Hide/Show
+        </div>
+        
+        <!-- 4. Size Changer -->
+        <div class="interactive-item" onclick="changeSize(this)" style="background:#ffffcc">
+            Click to Change Size
+        </div>
+        
+        <!-- 5. Shape Transformer -->
+        <div class="interactive-item" onclick="transformShape(this)" style="background:#ffccff">
+            Click to Transform Shape
+        </div>
+        
+        <!-- 6. Mover -->
+        <div class="interactive-item" onclick="moveElement(this)" style="background:#ccffff">
+            Click to Move
+        </div>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #f5f5f5;">
+        <p><strong>Instructions:</strong> Each element performs a unique action when clicked.</p>
+        <p>Uses JavaScript event listeners and the <code>this</code> keyword.</p>
+    </div>
+
+    <script>
+        // 1. Color Changer - Uses THIS keyword
+        function changeColor(element) {
+            const colors = ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ff99ff', '#99ffff'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            element.style.backgroundColor = randomColor;
+            element.textContent = `Color: ${randomColor}`;
+        }
+        
+        // 2. Text Modifier
+        let textState = 0;
+        function modifyText(element) {
+            const texts = [
+                "Text Modified!",
+                "Clicked Again!",
+                "Hello World!",
+                "JavaScript Rocks!",
+                "Back to Start"
+            ];
+            element.textContent = texts[textState];
+            textState = (textState + 1) % texts.length;
+        }
+        
+        // 3. Visibility Toggler
+        let isVisible = true;
+        function toggleVisibility(element) {
+            if (isVisible) {
+                element.style.opacity = '0.3';
+                element.textContent = "I'm Faded";
+            } else {
+                element.style.opacity = '1';
+                element.textContent = "Click to Hide/Show";
+            }
+            isVisible = !isVisible;
+        }
+        
+        // 4. Size Changer
+        let sizeState = 0;
+        function changeSize(element) {
+            const sizes = ['150px', '180px', '120px', '200px'];
+            element.style.width = sizes[sizeState];
+            element.style.height = sizes[sizeState];
+            sizeState = (sizeState + 1) % sizes.length;
+            element.textContent = `Size: ${element.style.width}`;
+        }
+        
+        // 5. Shape Transformer
+        let shapeState = 0;
+        function transformShape(element) {
+            const shapes = ['10px', '50%', '20px 50px', '50px 10px', '0'];
+            element.style.borderRadius = shapes[shapeState];
+            shapeState = (shapeState + 1) % shapes.length;
+            element.textContent = `Shape: ${shapeState + 1}`;
+        }
+        
+        // 6. Mover
+        let position = 0;
+        function moveElement(element) {
+            const positions = ['0px', '20px', '-20px', '40px', '-40px', '0px'];
+            element.style.marginLeft = positions[position];
+            element.style.marginTop = positions[position];
+            position = (position + 1) % positions.length;
+            element.textContent = `Moved!`;
+        }
+    </script>
+</body>
+</html>

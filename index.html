@@ -10,74 +10,126 @@
             font-family: "Segoe UI", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f3f6fa;
+            background: linear-gradient(135deg, #e8edf5, #f3f6fa);
             color: #333;
+            transition: 0.3s;
+        }
+
+        /* Smooth fade animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .container {
-            max-width: 650px;
+            width: 95%;
+            max-width: 750px;
             margin: 60px auto;
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 45px;
+            border-radius: 15px;
+            animation: fadeIn 0.8s ease-in-out;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
         }
 
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 2.2rem;
         }
 
         p {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #555;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         a {
             display: block;
             text-decoration: none;
             font-size: 1.1rem;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 8px;
+            margin: 12px 0;
+            padding: 14px;
+            border-radius: 10px;
             background: #4a6cf7;
             color: white;
             text-align: center;
-            transition: 0.2s;
+            transition: 0.25s ease;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Hover animations for desktop */
         a:hover {
             background: #2a4bd4;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        /* Ripple effect on click */
+        a:active::after {
+            content: "";
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(0.2); }
+            to   { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
         }
 
         hr {
             border: none;
             height: 1px;
             background: #ddd;
-            margin: 30px 0;
+            margin: 35px 0;
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px;
+                margin: 30px auto;
+                border-radius: 12px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            a {
+                font-size: 1rem;
+                padding: 12px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1>My Online Lab Manual</h1>
-        <p>This is my personal collection of lab experiments.</p>
+        <p>Your complete experimental collection — organized & interactive!</p>
 
-        <a href="Lab 1.html">View Lab 1</a>
-        <a href="Lab 2.html">View Lab 2</a>
-        <a href="Lab 3.html">View Lab 3</a>
-        <a href="Lab 4.html">View Lab 4</a>
-        <a href="Lab 5.html">View Lab 5</a>
-        <a href="Lab 6.html">View Lab 6</a>
+        <a href="Lab 1.html">Open Lab 1</a>
+        <a href="Lab 2.html">Open Lab 2</a>
+        <a href="Lab 3.html">Open Lab 3</a>
+        <a href="Lab 4.html">Open Lab 4</a>
+        <a href="Lab 5.html">Open Lab 5</a>
+        <a href="Lab 6.html">Open Lab 6</a>
 
         <hr>
 
-        <a href="Quiz Web App.html">Click here to access the Quiz App</a>
+        <a href="Quiz Web App.html" style="background:#27ae60;">Access Quiz App</a>
     </div>
 
 </body>

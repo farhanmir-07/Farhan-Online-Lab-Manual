@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - JavaScript Fundamentals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Lab 7</h1>
+    
+    <!-- Task 1 Button -->
+    <button onclick="task1()">Task 1: Enter Name & ID</button>
+    
+    <!-- Task 2 Button -->
+    <button onclick="task2()">Task 2: Arithmetic & Comparison</button>
+    
+    <!-- Results Display -->
+    <div id="results" class="result">
+        Results will appear here...
+    </div>
+
+    <script>
+        // ========== TASK 1 ==========
+        function task1() {
+            // Get name
+            let name = prompt("Please enter your name:");
+            
+            // Get registration ID
+            let regId = prompt("Please enter your Registration ID:");
+            
+            // Show alert with both inputs
+            if (name && regId) {
+                alert(`Name: ${name}\nRegistration ID: ${regId}`);
+                
+                // Display on page
+                document.getElementById("results").innerHTML = 
+                    `<strong>Task 1 Results:</strong><br>
+                     Name: ${name}<br>
+                     Registration ID: ${regId}`;
+            }
+        }
+        
+        // ========== TASK 2 ==========
+        function task2() {
+            // Get first number
+            let num1 = parseFloat(prompt("Enter first number:"));
+            
+            // Get second number
+            let num2 = parseFloat(prompt("Enter second number:"));
+            
+            // Perform calculations
+            let sum = num1 + num2;
+            let difference = num1 - num2;
+            let product = num1 * num2;
+            let quotient = num1 / num2;
+            let comparison = num1 > num2;
+            
+            // Create result message
+            let message = `Results:\n
+                Sum: ${num1} + ${num2} = ${sum}
+                Difference: ${num1} - ${num2} = ${difference}
+                Product: ${num1} × ${num2} = ${product}
+                Quotient: ${num1} ÷ ${num2} = ${quotient.toFixed(2)}
+                Comparison: ${num1} > ${num2} = ${comparison}`;
+            
+            // Show alert
+            alert(message);
+            
+            // Display on page
+            document.getElementById("results").innerHTML = 
+                `<strong>Task 2 Results:</strong><br>
+                 Numbers: ${num1} and ${num2}<br><br>
+                 Sum: ${sum}<br>
+                 Difference: ${difference}<br>
+                 Product: ${product}<br>
+                 Quotient: ${quotient.toFixed(2)}<br>
+                 Comparison (${num1} > ${num2}): ${comparison}`;
+        }
+    </script>
+</body>
+</html>
